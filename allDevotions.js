@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Devotion number is daysSinceStartOfYear + 1 (since January 1st is devotion1)
         const devotionNumber = daysSinceStartOfYear + 1;
 
-        // Generate the filename for the selected date's devotion
+        // Generate the filename for the selected date's devotions
         return `BQW${devotionNumber}.m4a`;
     }
 
