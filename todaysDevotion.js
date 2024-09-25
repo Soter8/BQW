@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const devotionNumber = daysSinceStartOfYear + 1;
 
         // Generate the filename for today's devotion
-        return `BQW${devotionNumber}.mp3`;
+        return `BQW${devotionNumber}.m4a`;
     }
 
     // Logic to load the devotion of the day
