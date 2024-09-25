@@ -1,0 +1,116 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333;
+    display: flex; /* Flexbox for centering */
+    flex-direction: column; /* Column direction to stack header, main, footer */
+    align-items: center; /* Center content horizontally */
+    min-height: 100vh; /* Ensure body height fills viewport */
+}
+
+header {
+    background-color: #0073e6;
+    color: white;
+    padding: 10px 0;
+    text-align: center;
+    width: 100%; /* Full width */
+}
+
+nav {
+    text-align: center;
+}
+
+nav a {
+    margin: 0 15px;
+    color: white;
+    text-decoration: none;
+}
+
+main {
+    padding: 20px;
+    display: flex; /* Flexbox for centering */
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center content horizontally */
+    flex: 1; /* Allow main to grow and fill available space */
+    width: 100%; /* Full width */
+    max-width: 800px; /* Max width for content */
+    box-sizing: border-box; /* Include padding in width */
+}
+
+footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    width: 100%; /* Full width */
+    position: relative; /* Changed to relative to not overlap with content */
+}
+
+audio {
+    margin-top: 20px;
+    display: block;
+    margin: 0 auto; /* Center audio element */
+}
+
+/* DATEPICKER */
+/* Styling for the date picker container */
+#date-picker-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px; /* Space between elements */
+    margin: 20px 0; /* Margin for spacing */
+    padding: 10px;
+    background-color: #f9f9f9; /* Light background */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+/* Styling for the date picker input */
+#devotion-date {
+    padding: 10px;
+    border: 1px solid #ddd; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px;
+    color: #333; /* Text color */
+    background-color: #fff; /* White background */
+    transition: border-color 0.3s ease; /* Smooth transition on focus */
+}
+
+/* Change border color on focus for date picker */
+#devotion-date:focus {
+    border-color: #0073e6; /* Blue border on focus */
+    outline: none; /* Remove default outline */
+}
+
+/* Styling for the button */
+#load-devotion {
+    padding: 10px 15px;
+    background-color: #0073e6; /* Button background color */
+    color: white; /* Button text color */
+    border: none; /* Remove border */
+    border-radius: 5px; /* Rounded corners */
+    font-size: 16px;
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: background-color 0.3s ease; /* Smooth transition on hover */
+}
+
+/* Change background color on button hover */
+#load-devotion:hover {
+    background-color: #005bb5; /* Darker blue on hover */
+}
+
+/* Change background color on button active */
+#load-devotion:active {
+    background-color: #004494; /* Even darker blue on click */
+}
+
+/* Responsive styling */
+@media (max-width: 600px) {
+    #date-picker-container {
+        flex-direction: column; /* Stack elements vertically on small screens */
+        gap: 15px; /* Increase gap between elements */
+    }
+}
