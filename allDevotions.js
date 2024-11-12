@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const devotionNumber = daysSinceStartOfYear + 1;
 
         // Generate the filename for the selected date's devotions
-        return `BQW${devotionNumber}.m4a`;
+        return `BQW${devotionNumber}.mp3`;
     }
 
     // Date picker elements
