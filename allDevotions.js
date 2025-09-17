@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const daysSinceStartOfYear = Math.round((selectedDate - startOfYear) / (1000 * 60 * 60 * 24)); // Use Math.round for precise day calculation
 
         // Devotion number is daysSinceStartOfYear + 1 (since January 1st is devotion1)
-        const devotionNumber = daysSinceStartOfYear + 1;
+        const devotionNumber = daysSinceStartOfYear + 2;
 
         // Generate the filename for the selected date's devotions
         return `BQW${devotionNumber}.mp3`;
