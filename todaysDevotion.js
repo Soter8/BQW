@@ -5,10 +5,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const startOfYear = new Date(today.getFullYear(), 0, 1); // January 1st of the current year
 
         // Calculate the number of days between today and January 1st
-        const daysSinceStartOfYear = Math.floor((today - startOfYear) / (1000 * 60 * 60 * 24));
+        let daysSinceStartOfYear = Math.floor((today - startOfYear) / (1000 * 60 * 60 * 24));
 
-        // Devotion number is daysSinceStartOfYear + 1 (since January 1st is devotion1)
-        const devotionNumber = daysSinceStartOfYear + 2;
+        //if the day is before leap year on a day when leap year does not exist add a day
+        if (!((today.getUTCFullYear() % 4 === 0 && today.getUTCFullYear() % 100 !== 0) || (today.getUTCFullYear() % 400 === 0))) {
+            if (daysSinceStartOfYear >= 59) { // March 1 or later
+                daysSinceStartOfYear += 1;
+            }
+        }
+
+        // File number (your original logic used +2)
+        const devotionNumber = daysSinceStartOfYear + 1;
 
         // Generate the filename for today's devotion
         return `BQW${devotionNumber}.mp3`;

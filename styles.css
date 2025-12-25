@@ -114,3 +114,33 @@ audio {
         gap: 15px; /* Increase gap between elements */
     }
 }
+
+/* Hide radio inputs */
+#book-selector input[type="radio"] {
+    display: none;
+}
+
+/* Default button style */
+.book-button span {
+    padding: 10px 20px;
+    background-color: #e0e0e0;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #333;
+    border: 2px solid transparent;
+    transition: all 0.25s ease;
+    user-select: none;
+}
+
+/* Hover effect */
+.book-button:hover span {
+    background-color: #d0d0d0;
+}
+
+/* Highlight when selected */
+.book-button input[type="radio"]:checked + span {
+    background-color: #0073e6;
+    color: white;
+    border-color: #005bb5;
+}

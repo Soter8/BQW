@@ -1,16 +1,24 @@
 document.addEventListener('DOMContentLoaded', () => {
+
     // Function to calculate the devotion file number based on days since January 1st
-    function getDevotionFileByDate(selectedDate) {
+    function getDevotionFileByDate(selectedDate, bookPrefix) {
         const startOfYear = new Date(selectedDate.getUTCFullYear(), 0, 1); // January 1st of the selected year
 
-        // Calculate the number of days between selectedDate and January 1st
-        const daysSinceStartOfYear = Math.round((selectedDate - startOfYear) / (1000 * 60 * 60 * 24)); // Use Math.round for precise day calculation
+        // Days since Jan 1
+        let daysSinceStartOfYear = Math.round((selectedDate - startOfYear) / (1000 * 60 * 60 * 24));
 
-        // Devotion number is daysSinceStartOfYear + 1 (since January 1st is devotion1)
-        const devotionNumber = daysSinceStartOfYear + 2;
+        //if the day is before leap year on a day when leap year does not exist add a day
+        if (!((selectedDate.getUTCFullYear() % 4 === 0 && selectedDate.getUTCFullYear() % 100 !== 0) || (selectedDate.getUTCFullYear() % 400 === 0))) {
+            if (daysSinceStartOfYear >= 59) { // March 1 or later
+                daysSinceStartOfYear += 1;
+            }
+        }
 
-        // Generate the filename for the selected date's devotions
-        return `BQW${devotionNumber}.mp3`;
+        // File number (your original logic used +2)
+        const devotionNumber = daysSinceStartOfYear + 1;
+
+        // Build filename using the selected prefix
+        return `${bookPrefix}${devotionNumber}.mp3`;
     }
 
     // Date picker elements
@@ -19,7 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const devotionTitle = document.getElementById('devotion-title');
     const audioElement = document.getElementById('devotion-audio').querySelector('source');
 
-    // Handle date selection and load devotion
+    // Handle "Load Devotion" click
     loadButton.addEventListener('click', () => {
         const selectedDate = new Date(datePicker.value);
         if (isNaN(selectedDate)) {
@@ -27,15 +35,19 @@ document.addEventListener('DOMContentLoaded', () => {
             return;
         }
 
-        // Get the devotion file for the selected date
-        const devotionFile = getDevotionFileByDate(selectedDate);
-        //add one day to datepicker
+        // Get selected devotion book (BQW or TWJ)
+        const bookPrefix = document.querySelector('input[name="devotion-book"]:checked').value;
+
+        // Get devotion file
+        const devotionFile = getDevotionFileByDate(selectedDate, bookPrefix);
+
+        // Add one day for display (your existing logic)
         selectedDate.setDate(selectedDate.getDate() + 1);
         const displayDate = selectedDate.toLocaleDateString('en-US', { month: 'long', day: 'numeric' });
 
-        // Set the devotion title and audio source
-        devotionTitle.innerText = `Devotion for ${displayDate}`;
+        // Update UI
+        devotionTitle.innerText = `Devotion for ${displayDate} (${bookPrefix})`;
         audioElement.src = `media/${devotionFile}`;
-        audioElement.parentElement.load(); // Reload the audio element with the new source
+        audioElement.parentElement.load();
     });
 });
